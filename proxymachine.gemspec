@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
   ## the sub! line in the Rakefile
   s.name              = 'proxymachine'
   s.version           = '1.2.4'
-  s.date              = '2011-02-01'
+  s.date              = '2012-08-25'
   s.rubyforge_project = 'proxymachine'
 
   ## Make sure your summary is short. The description may be as long
@@ -50,7 +50,7 @@ Gem::Specification.new do |s|
   ## those that are only needed during development
   s.add_development_dependency(%q<rake>, ["~> 0.8.7"])
   s.add_development_dependency(%q<shoulda>, ["~> 2.11.3"])
-  s.add_development_dependency(%q<jeweler>, ["~> 1.5.2"])
+  s.add_development_dependency(%q<jeweler>, ["> 1.5.2"])
 
   ## Leave this section as-is. It will be automatically generated from the
   ## contents of your Git repository via the gemspec task. DO NOT REMOVE

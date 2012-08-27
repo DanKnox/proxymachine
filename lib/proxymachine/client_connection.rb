@@ -7,6 +7,8 @@ class ProxyMachine
       LOGGER.info "Send TERM or INT to quit after waiting for up to 10 seconds for connections to finish."
     end
 
+    attr_accessor :buffer
+
     def post_init
       LOGGER.info "Accepted #{peer}"
       @buffer = []
@@ -36,12 +38,16 @@ class ProxyMachine
       LOGGER.error "#{e.class} - #{e.message}"
     end
 
+    def data
+      @buffer.join
+    end
+
     # Called when new data is available from the client but no remote
     # server has been established. If a remote can be established, an
     # attempt is made to connect and proxy to the remote server.
     def establish_remote_server
       fail "establish_remote_server called with remote established" if @remote
-      commands = ProxyMachine.router.call(@buffer.join)
+      commands = instance_eval(&ProxyMachine.router)
       LOGGER.info "#{peer} #{commands.inspect}"
       close_connection unless commands.instance_of?(Hash)
       if remote = commands[:remote]
